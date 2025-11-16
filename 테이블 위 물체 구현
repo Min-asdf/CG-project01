@@ -1,10 +1,10 @@
 #include <GL/freeglut.h>
 
-// flatshading°ú WireframeÀ» Åä±Û¸µÇÏ±â À§ÇÑ ºÎ¿ï º¯¼ö
+// flatshadingê³¼ Wireframeì„ í† ê¸€ë§í•˜ê¸° ìœ„í•œ ë¶€ìš¸ ë³€ìˆ˜
 int FlatShaded = 0;
 int Wireframed = 0;
 
-// ¸¶¿ì½º ¿òÁ÷ÀÓ¿¡ µû¶ó ½ÃÁ¡À» ¹Ù²Ù±â À§ÇÑ º¯¼ö 
+// ë§ˆìš°ìŠ¤ ì›€ì§ì„ì— ë”°ë¼ ì‹œì ì„ ë°”ê¾¸ê¸° ìœ„í•œ ë³€ìˆ˜ 
 int ViewX = 0, ViewY = 0;
 
 void InitLight() {
@@ -30,7 +30,7 @@ void InitLight() {
 	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
 }
 
-// *¸¶¿ì½º ¿òÁ÷ÀÓ X,Y¸¦ Àü¿ª º¯¼öÀÎ ViewX, ViewY¿¡ ÇÒ´ç
+// *ë§ˆìš°ìŠ¤ ì›€ì§ì„ X,Yë¥¼ ì „ì—­ ë³€ìˆ˜ì¸ ViewX, ViewYì— í• ë‹¹
 void MyMouseMove(GLint X, GLint Y) {
 	ViewX = X;
 	ViewY = Y;
@@ -54,7 +54,7 @@ void MyKeyboard(unsigned char key, int x, int y) {
 		glutPostRedisplay();
 		break;
 
-		// *¿ÍÀÌ¾î ÇÁ·¹ÀÓ Åä±Û¸µ
+		// *ì™€ì´ì–´ í”„ë ˆì„ í† ê¸€ë§
 	case 'w':
 		if (Wireframed) {
 			Wireframed = 0;
@@ -74,34 +74,34 @@ void MyDisplay() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	// *¸¶¿ì½ºÀÇ ¿òÁ÷ÀÓ¿¡ µû¶ó ½ÃÁ¡º¯È¯
+	// *ë§ˆìš°ìŠ¤ì˜ ì›€ì§ì„ì— ë”°ë¼ ì‹œì ë³€í™˜
 	gluLookAt(ViewX * 0.001, ViewY * 0.001, 0.0, 0.0, 0.0, -1.0, 0.0, 1.0, 0.0);
 
-	// *µµ³Ó
+	// *ë„ë„›
 	glPushMatrix();
-	// * x 0.4, y 0.3, z -0.3 ÀÌµ¿
+	// * x 0.4, y 0.3, z -0.3 ì´ë™
 	glTranslatef(0.4, 0.2, -0.3);
 	glutSolidTorus(0.1, 0.3, 10, 10);
 	glPopMatrix();
 
-	// *ÂşÁÖÀüÀÚ
+	// *ì°»ì£¼ì „ì
 	glutSolidTeapot(0.2);
 
-	// *ÂşÀÜ
+	// *ì°»ì”
 	glPushMatrix();
-	// * x -0.5, y -0.1 ÀÌµ¿
+	// * x -0.5, y -0.1 ì´ë™
 	glTranslatef(-0.5, -0.1, 0);
 	glutSolidTeacup(0.2);
 	glPopMatrix();
 
-	// *¿ø
+	// *ì›
 	glPushMatrix();
-	// * x 0.5, y -0.05 ÀÌµ¿
+	// * x 0.5, y -0.05 ì´ë™
 	glTranslatef(0.5, -0.05, 0);
 	glutSolidSphere(0.1, 10, 10);
 	glPopMatrix();
 
-	// *Ã¥»ó À§Ä¡ ÀÌµ¿ y -0.2
+	// *ì±…ìƒ ìœ„ì¹˜ ì´ë™ y -0.2
 	glTranslatef(0, -0.2, 0);
 
 	glBegin(GL_QUADS);
@@ -142,17 +142,17 @@ void MyDisplay() {
 	glVertex3f(1.0, -0.05, -1.0);
 	glEnd();
 	
-	//* xÃà 90 È¸Àü
+	//* xì¶• 90 íšŒì „
 	glRotatef(90, 1.0, 0, 0);
-	//* Ã¥»ó ¹ŞÄ§
+	//* ì±…ìƒ ë°›ì¹¨
 	glutSolidCylinder(0.1, 0.6, 10, 10);
 
-	//* ¹Ù´Ú
+	//* ë°”ë‹¥
 	glPushMatrix();
-	//* z 0.6 ÀÌµ¿
+	//* z 0.6 ì´ë™
 	glTranslatef(0, 0, 0.6);
 	glBegin(GL_QUADS);
-	//* ¹Ù´Ú Å©±â ¼³Á¤
+	//* ë°”ë‹¥ í¬ê¸° ì„¤ì •
 	glVertex3f(-3.0, 3.0, 0.0);
 	glVertex3f(3.0, 3.0, 0.0);
 	glVertex3f(3.0, -3.0, 0.0);
